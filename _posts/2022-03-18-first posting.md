@@ -1,12 +1,16 @@
-# 가보자고 
 
+---
+categories: diary
+---
 
-
+# 가보자고
 ​                                                                          나의 첫번쨰 포스팅의 제목은 "가보자고"이다
 
 
 
+
 <img src="../images/2022-03-18-first posting/다운로드.jpg" alt="다운로드" style="zoom:33%;" />
+
 
 
 
