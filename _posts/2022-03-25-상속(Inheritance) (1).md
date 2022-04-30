@@ -1,3 +1,12 @@
+---
+
+categories: python
+
+---
+
+
+
+
 ### Class Inheritance(상속)
 - 코드를 재사용하는 기법
 - 기존에 정의해둔 클래스를 그대로 물려받는 기법
