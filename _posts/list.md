@@ -1,0 +1,280 @@
+### 리스트
+ - 대괄호[]로 감싸주고 각 요솟값은 쉼표(,)로 구분한다
+ - list안에 갓을 담아서 생성
+ - 문자열, split()함수로 생성
+ - 순서가 있음(인덱스가 있다), 중복,수정,삭제가능
+
+
+```python
+#리스트 선언
+중고차 = ['k5', 'white']  #숫자와 문자를 혼용해서 담을 수 있다
+print(type(중고차))#중고차 의 타입을 알 수 있음
+print(중고차)
+```
+
+
+```python
+중고차 = ['k5', 'white',['520d', 'black']] 
+print(중고차)
+```
+
+
+```python
+중고차 = ['k5', 'white'] 
+
+print(중고차[0]) #k5만 출력하고 싶을때-리스트라는 자료에서 원하는 자료를 출력할때
+```
+
+
+```python
+중고차 = ['k5', 'white'] 
+중고차[1] = 'black'
+print(중고차[1]) #자료 수정하는법 중고차1을 black로 수정
+```
+
+### list 정렬
+- sort() 리스트 자체를 내부적으로 정렬
+- sort() 리스트의 정렬된 복사본을 반환
+
+
+```python
+중고차 = ['k5', 'white'] 
+중고차.sort()# 문자 숫자 순으로 정렬시킴
+print(중고차) 
+
+```
+
+    ['k5', 'white']
+    
+
+
+```python
+a = [9, 10, 7, 19, 1, 2, 20, 21, 7, 8]
+
+# a.sort(reverse=False)# 기본적으로 오름차순 정렬 (=a.sort())
+a.sort(reverse=True) # 내림차순
+
+a.reverse() # 내림차순 정렬
+
+# b = sorted(a) # 원본 a는 그대로 유지
+
+# print(b)
+print(a)
+
+```
+
+    [1, 2, 7, 7, 8, 9, 10, 19, 20, 21]
+    
+
+
+```python
+중고차 = ['k5', 'white'] 
+중고차.reverse() #리스트의 순서를 뒤집어줌
+print(중고차)
+```
+
+
+```python
+#list()함수는 다른 데이터 타입을 리스트로 변환할떄도 사용 한다
+# list()함수를 사용하여 list로 변환을 한다
+#()소괄호- 인자값,매개변수라고함
+
+x = 'hello world'
+
+a = list(x)
+
+print(a)
+
+#튜플형태에서 리스트로 변환
+
+x = (1,2,3)
+print(type(x))
+
+y = list(x)
+print(y)
+
+#split를 이용하여 리스트 형으로 변환
+
+str_b ='hello world nice weather'
+li_b = str_b.split() #구분자가 없으면 띄어쓰기로 구분
+
+print(li_b)
+
+```
+
+    ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+    <class 'tuple'>
+    [1, 2, 3]
+    ['hello', 'world', 'nice', 'weather']
+    
+
+
+```python
+# 리스트 인덱싱-순서가 있을떄 인덱싱 가능
+a = [1,11,2,22,3,33]
+
+print(a[3])
+print(a[-1])
+
+b = [10, 100, ['pen', 'cap', 'plate']] 
+
+print(b[2][1])
+print(b[2][-1])
+
+```
+
+    22
+    33
+    cap
+    plate
+    
+
+
+```python
+# 문자열은 불변(immutable)
+
+str = 'hello world'
+print(str[0])
+
+str[0]='k'
+```
+
+    h
+    
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    ~\AppData\Local\Temp/ipykernel_19392/2564782471.py in <module>
+          4 print(str[0])
+          5 
+    ----> 6 str[0]='k'
+    
+
+    TypeError: 'str' object does not support item assignment
+
+
+### 리스트 슬라이싱
+- 슬라이싱의 결과 역시 list 타입이다
+
+
+```python
+x = [10, 100, ['pen', 'cap', 'eraser']]
+
+print(x[0:2])#시작위치:실제잘라내는 위치-부분을 잘라낸다
+print(x[2][2:3])#2에 잘라내고 1부터 시작
+```
+
+    [10, 100]
+    ['eraser']
+    
+
+
+```python
+#리스트 연산
+
+c=[1,2,3,4]
+d=[10, 100, ['pen', 'cap', 'eraser']]
+
+print(c+d)
+print(c *3)
+
+```
+
+    [1, 2, 3, 4, 10, 100, ['pen', 'cap', 'eraser']]
+    [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+    
+
+### list 멤버함수
+- 생성된 리스트 객체에서 동작하는 함수
+
+
+```python
+#append():끝에 추가하는 함수
+a = [1,2,3,4]
+a.append(100)
+print(a)
+
+#extend():리스트를 연장, +=로도 가능
+aa = [1,2,3]
+bb = [6,7,8]
+aa.append(bb)
+print(aa)
+
+aa +=bb
+print(aa)
+
+#remove(): 값으로 항목삭제
+a = [1,2,3,4,5]
+a.remove(2)
+
+print(a)
+```
+
+    [1, 2, 3, 4, 100]
+    [1, 2, 3, [6, 7, 8]]
+    [1, 2, 3, [6, 7, 8], 6, 7, 8]
+    [1, 3, 4, 5]
+    
+
+
+```python
+# pop()
+a = [1,2,3,4,5]
+
+# a.pop()
+# a.pop()
+# a.pop()
+# a.pop()
+# a.pop()
+# if a: # a = []:False
+#     a.pop()
+# else:
+#     print('데이터가 존재하지 않습니다!!')
+
+d = a.pop(2)
+
+print(d)
+
+print(a)
+
+```
+
+    3
+    [1, 2, 4, 5]
+    
+
+
+```python
+#index():찾고자 하는 값의 인덱스를 반환
+a = [2, 6, 7, 9 ,10]
+a.index(9)
+```
+
+
+
+
+    3
+
+
+
+ ### in 키워드
+ - 리스트 내에 해당 값이 존재하는지 확인
+ - value in [list]
+ - True나 False를 반환
+
+
+```python
+# in 키워드 : True나 False를 반환
+a = [1,2,3,4,5]
+
+b = 10
+
+c = b in a
+print(c)
+```
+
+    False
+    
