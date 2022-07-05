@@ -1,0 +1,173 @@
+### DI를 injection하기
+
+
+
+- 개체 패키지 
+
+1.Exam 인터페이스 
+
+```java
+package Spring.di.entity;
+
+public interface Exam {
+	int total();
+	float avg();
+
+}
+```
+
+
+2.newlec
+```java
+package Spring.di.entity;
+
+public class newlecExam implements Exam {
+
+	private int kor;
+	private int eng;
+	private int math;
+	private int com;
+
+	@Override
+	public int total() {
+		// TODO Auto-enerated method stub
+		return kor + eng + math + com;
+	}
+
+	@Override
+	public float avg() {
+		// TODO Auto-generated method stub
+		return total() / 4.0f;
+	}
+
+}
+
+
+```
+
+
+
+&nbsp;
+- ui 패키지
+
+
+1.인터페이스
+
+```java
+
+package Spring.di.ui;
+
+public interface ExamConsole {
+
+	void print();
+
+}
+
+```
+
+
+
+
+2.Program
+
+```java
+package Spring.di;
+
+import Spring.di.entity.Exam;
+import Spring.di.entity.newlecExam;
+import Spring.di.ui.ExamConsole;
+import Spring.di.ui.GridExamConsole;
+
+public class Program {
+
+	public static void main(String[] args) {
+
+		Exam exam = new newlecExam();
+//		ExamConsole console = new InlineExamConsole(exam); // DI이다
+		ExamConsole console = new GridExamConsole(exam);// Gride로 바꿀수 있다
+
+		
+
+		console.print();
+	
+
+	}
+
+}
+
+
+```
+ newlecExam 참조형식과 Exam의 개체 형식이 다르면 안된다 
+ 
+ 만약 두개의 관계가 부모자식이면 상관없으나 인터페이스로 구현 할 거라서 다르면 안된다 
+ 
+ newlecExam은 데이터 구현객체가 된다
+
+
+
+Inline은 한줄로 출력 즉 DI가 된다
+
+
+
+&nbsp;
+
+3-1)InlineExamConsole 클래스
+```java
+package Spring.di.ui;
+
+import Spring.di.entity.Exam;
+
+public class InlineExamConsole implements ExamConsole {
+
+	private Exam exam;
+
+	public InlineExamConsole(Exam exam) {
+
+		this.exam = exam;
+	}
+
+	@Override
+	public void print() {
+		System.out.printf("total is %d,avg is %f\n", exam.total(), exam.avg());
+
+	}
+
+}
+
+```
+
+3-2) GridExamConsole클래스
+
+```java
+package Spring.di.ui;
+
+import Spring.di.entity.Exam;
+
+public class GridExamConsole implements ExamConsole {
+
+	private Exam exam;
+
+	public GridExamConsole(Exam exam) {
+		this.exam = exam;
+	}
+
+	@Override
+	public void print() {
+
+		System.out.println("┌─────────┬─────────┐");
+		System.out.println("│  total  │   avg   │");
+		System.out.println("├─────────┼─────────┤");
+		System.out.printf("│   %3d   │  %3.2f   │\n", exam.total(), exam.avg());
+		System.out.println("└─────────┴─────────┘");
+
+	}
+}
+
+```
+
+위의 방식은 직접 injection 하는 방식이다
+
+마지막 Program 에서  ExamConsole console = [?];에서 inline과 grid방식으로 부품을 조립하였다 
+
+ 클래스를 생성하지 않고 ? 부분을 조립해주는 것을 스프링으로 가능하다 즉 뺏다꽂았다 결합이 가능하다
+
